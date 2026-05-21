@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,20 +15,22 @@ public class ProductModel {
 
     private Double preco;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    @JsonBackReference
+    private ClienteModel cliente;
+
     public ProductModel() {
     }
 
-    public ProductModel(String nome, Double preco) {
+    public ProductModel(String nome, Double preco, ClienteModel cliente) {
         this.nome = nome;
         this.preco = preco;
+        this.cliente = cliente;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -44,5 +47,13 @@ public class ProductModel {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public ClienteModel getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 }
