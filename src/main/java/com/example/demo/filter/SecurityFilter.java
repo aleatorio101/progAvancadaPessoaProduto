@@ -22,7 +22,7 @@ public class SecurityFilter {
                                 .requestMatchers(HttpMethod.POST, "/products").permitAll()
                                 .requestMatchers(HttpMethod.DELETE, "/products/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
-                                .anyRequest().authenticated()
+
                 )
                 .build();
     }
